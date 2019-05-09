@@ -1,0 +1,26 @@
+{% extends "learning_logs/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Delete topic: <small> {{ topic }}</small></h2>
+{% endblock header %}
+
+{% block content %}
+
+    <form action="{% url 'learning_logs:delete_topic' topic.id %}" method='post'
+    class="form">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        This is <b>irreversible!</b> Are you sure you would like to delete this topic?
+        &nbsp;
+        <button name="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-success active"
+            href="{% url 'learning_logs:topic' topic.id %}"
+            role="button" aria-pressed="true">Cancel</a>
+
+    </form>
+
+{% endblock content %}

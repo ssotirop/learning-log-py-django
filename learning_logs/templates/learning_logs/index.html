@@ -1,0 +1,45 @@
+{% extends "learning_logs/base.html" %}
+
+<!-- Adding styling to index.html -->
+{% block header %}
+  <div class='jumbotron'>
+      <h1>Track your learning.</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% if user.is_authenticated %}
+        <h2>
+            Welcome back, {{ user.username }}!
+        </h2>
+        <h2>
+            Continue with your Learning Log.
+        </h2>
+        <h3>
+            Group your learning areas into topics.
+
+            Whenever you learn something new about a topic, make an entry
+            summarizing what you have learnt.
+            <br><br>
+            You can edit/delete an entry or topic. Please note that
+            <u>deletion</u> is <b>irreversible.</b>
+        </h3>
+    {% else %}
+        <h2>
+            <a href="{% url 'users:register' %}">Register an account</a> to make
+            your own Learning Log, and list the topics you are learning about.
+        </h2>
+        <h2>
+            <a href="{% url 'users:login' %}">Login to your account</a>
+            to continue with your Learning Log.
+        </h2>
+        <h2>
+            Whenever you learn something new about a topic, make an entry
+            summarizing what you have learnt.
+        </h2>
+    {% endif %}
+</div>
+
+{% endblock content %}
